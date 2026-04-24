@@ -1,55 +1,50 @@
 const axios = require('axios');
 
-const baseUrl = 'http://localhost:5000';
+const BASE_URL = 'http://localhost:5000';
 
+// Sub Question 4: Retrieve all books
 async function getAllBooks() {
-    const res = await axios.get(`${baseUrl}/`);
-    return res.data;
+    try {
+        const res = await axios.get(`${BASE_URL}/`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    }
 }
 
+// Sub Question 1: Retrieve book details based on author
 async function getBooksByAuthor(author) {
-    const res = await axios.get(`${baseUrl}/author/${author}`);
-    return res.data;
+    try {
+        const res = await axios.get(`${BASE_URL}/author/${author}`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    }
 }
 
+// Sub Question 2: Retrieve book details based on title
 async function getBooksByTitle(title) {
-    const res = await axios.get(`${baseUrl}/title/${title}`);
-    return res.data;
+    try {
+        const res = await axios.get(`${BASE_URL}/title/${title}`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    }
 }
 
+// Sub Question 3: Retrieve book details based on ISBN
 async function getBookByIsbn(isbn) {
-    const res = await axios.get(`${baseUrl}/isbn/${isbn}`);
-    return res.data;
-}
-
-async function getBookReviews(isbn) {
-    const res = await axios.get(`${baseUrl}/review/${isbn}`);
-    return res.data;
-}
-
-async function addReview(isbn, review, token) {
-    const res = await axios.post(
-        `${baseUrl}/review/${isbn}`,
-        { review },
-        { headers: { Authorization: `Bearer ${token}` } }
-    );
-    return res.data;
-}
-
-async function deleteReview(isbn, token) {
-    const res = await axios.delete(
-        `${baseUrl}/review/${isbn}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-    );
-    return res.data;
+    try {
+        const res = await axios.get(`${BASE_URL}/isbn/${isbn}`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    }
 }
 
 module.exports = {
     getAllBooks,
     getBooksByAuthor,
     getBooksByTitle,
-    getBookByIsbn,
-    getBookReviews,
-    addReview,
-    deleteReview
+    getBookByIsbn
 };
